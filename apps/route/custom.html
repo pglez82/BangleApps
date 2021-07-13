@@ -256,7 +256,7 @@ function recompute(){
 var oldHeading = 0;
 Bangle.on('GPS', onGPS);
 setWatch(() => {
-  E.showMessage("Recomputing\nyour position\nin the route!");
+  E.showMessage('Recomputing\nyour position\nin the route!');
   recompute();
   g.clear();
 }, BTN1);
