@@ -3,8 +3,8 @@
   var hasFix = false;
   var fixToggle = false; // toggles once for each reading
   var gpsTrack; // file for GPS track
-  var periodCtr = 0;
   var gpsOn = false;
+  var lastFixTime;
 
   // draw your widget
   function draw() {
@@ -26,9 +26,11 @@
     fixToggle = !fixToggle;
     WIDGETS["gpsrec"].draw();
     if (hasFix) {
-      periodCtr--;
-      if (periodCtr<=0) {
-        periodCtr = settings.period;
+      var period = 1000000;
+      if (lastFixTime!==undefined)
+        period = fix.time.getTime() - lastFixTime;
+      if (period+500 > settings.period*1000) { // round up
+        lastFixTime = fix.time.getTime();
         try {
           if (gpsTrack) gpsTrack.write([
             fix.time.getTime(),
@@ -67,7 +69,7 @@
       gpsTrack = undefined;
     }
     if (gOn != gpsOn) {
-      Bangle.setGPSPower(gOn);
+      Bangle.setGPSPower(gOn,"gpsrec");
       gpsOn = gOn;
     }
   }
