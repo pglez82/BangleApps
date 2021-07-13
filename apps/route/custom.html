@@ -184,12 +184,6 @@ function getNextPtInfo() {
   nextDist = Math.sqrt(dx*dx+dy*dy)*coordScale;
 }
 
-function recomputeNextPt(){
-  if (fix && fix.fix) {
-
-  }
-}
-
 function onGPS(f) {
   fix = f;
   fix.p = Bangle.project(fix);
