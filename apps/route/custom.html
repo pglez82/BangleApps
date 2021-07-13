@@ -235,6 +235,10 @@ function onCompass(m) {
 // draw the heading
 var oldHeading = 0;
 Bangle.on('GPS', onGPS);
+setWatch(() => {
+  E.showMessage("You\npressed\nthe middle\nbutton!");
+  setTimeout(()=>g.clear(), 1000);
+}, BTN1);
 Bangle.on('mag', onCompass);
 Bangle.setGPSPower(1);
 Bangle.setCompassPower(1);
