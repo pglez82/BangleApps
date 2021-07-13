@@ -1,2 +1,3 @@
 0.01: New App!
 0.02: Change color from red->yellow to ease readability (fix #710)
+0.03: Use BTN1 to recompute next point in the route
